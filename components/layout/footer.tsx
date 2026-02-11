@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useMemo } from "react";
 import { getDictionary, Lang } from "@/lib/dictionaries";
 
 const socialLinks = [
@@ -10,19 +11,26 @@ const socialLinks = [
 ];
 
 export function Footer({ lang }: { lang: Lang }) {
+  // SYNCHRON - kein useEffect, kein useState
   const dict = getDictionary(lang);
 
-  const navLinks = [
-    { href: `/${lang}`, label: "Home" },
-    { href: `/${lang}/services`, label: dict.nav.services },
-    { href: `/${lang}/projects`, label: dict.nav.demos },
-    { href: `/${lang}/about`, label: dict.nav.about },
-  ];
+  const navLinks = useMemo(
+    () => [
+      { href: `/${lang}`, label: "Home" },
+      { href: `/${lang}/services`, label: dict.nav.services },
+      { href: `/${lang}/projects`, label: dict.nav.demos },
+      { href: `/${lang}/about`, label: dict.nav.about },
+    ],
+    [lang, dict]
+  );
 
-  const legalLinks = [
-    { href: `/${lang}/imprint`, label: dict.footer.imprint },
-    { href: `/${lang}/privacy`, label: dict.footer.privacy },
-  ];
+  const legalLinks = useMemo(
+    () => [
+      { href: `/${lang}/imprint`, label: dict.footer.imprint },
+      { href: `/${lang}/privacy`, label: dict.footer.privacy },
+    ],
+    [lang, dict]
+  );
 
   return (
     <footer className="relative mt-32 pb-8">
@@ -42,8 +50,8 @@ export function Footer({ lang }: { lang: Lang }) {
             </Link>
             <p className="text-text-muted text-sm leading-relaxed mb-6">
               {lang === "de"
-                ? "Moderne Webentwicklung aus Wien. Wir bauen Websites die Kunden überzeugen."
-                : "Modern web development from Vienna. We build websites that convince customers."}
+                ? "Moderne Webentwicklung aus Wien. Ich baue Websites die Kunden überzeugen."
+                : "Modern web development from Vienna. I build websites that convince customers."}
             </p>
 
             {/* Availability Badge */}

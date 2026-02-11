@@ -15,6 +15,8 @@ const bubbleStyleMobile =
 export function Navbar({ lang }: { lang: Lang }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  
+  // DIREKT aufrufen - NICHT async!
   const dict = getDictionary(lang);
 
   const navLinks = [
@@ -23,7 +25,6 @@ export function Navbar({ lang }: { lang: Lang }) {
     { href: `/${lang}/about`, label: dict.nav.about },
   ];
 
-  // Language switch
   const switchLang = lang === "de" ? "en" : "de";
   const switchPath = pathname.replace(`/${lang}`, `/${switchLang}`);
 
@@ -66,9 +67,9 @@ export function Navbar({ lang }: { lang: Lang }) {
               ))}
             </div>
 
-            {/* Language Switcher - Desktop */}
+            {/* Language Switcher */}
             <Link
-              href={switchPath} // 👈 Geändert von `/${switchLang}` zu switchPath
+              href={switchPath}
               className={`px-4 py-3 text-sm font-medium text-text-muted hover:text-text ${bubbleStyle}`}
             >
               {switchLang.toUpperCase()}

@@ -5,8 +5,8 @@ import { Footer } from "@/components/layout/footer";
 import { Lang } from "@/lib/dictionaries";
 
 export const metadata: Metadata = {
-  title: "[AGENTUR] | Webentwicklung aus Wien",
-  description: "Wir bauen moderne Websites die Kunden überzeugen.",
+  title: "FBWebVie | Webentwicklung aus Wien",
+  description: "Ich baue moderne Websites die Kunden überzeugen.",
 };
 
 export async function generateStaticParams() {
@@ -18,9 +18,9 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: Lang };
+  params: Promise<{ lang: Lang }>;
 }) {
-  const { lang } = params;
+  const { lang } = await params;
 
   return (
     <html lang={lang}>
