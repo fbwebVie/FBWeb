@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { Palette, Code, ShoppingCart } from "lucide-react";
+import { Palette, Code, Rocket } from "lucide-react";
 import { Dictionary } from "@/lib/dictionaries";
 import Image from "next/image";
 
@@ -85,9 +85,9 @@ export function Services({ dict }: { dict: Dictionary }) {
       description: dict.services.development.description,
     },
     {
-      icon: ShoppingCart,
-      title: dict.services.ecommerce.title,
-      description: dict.services.ecommerce.description,
+      icon: Rocket,
+      title: dict.services.landingpages.title,
+      description: dict.services.landingpages.description,
     },
   ];
 
@@ -116,7 +116,6 @@ export function Services({ dict }: { dict: Dictionary }) {
             </p>
           </motion.div>
 
-          {/* 3 Services in einer Reihe auf Desktop */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {services.map((service) => (
               <ServiceCard key={service.title} {...service} />

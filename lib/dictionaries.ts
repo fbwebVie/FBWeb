@@ -25,7 +25,7 @@ export type Dictionary = {
       title: string;
       description: string;
     };
-    ecommerce: {
+    landingpages: {
       title: string;
       description: string;
     };
@@ -37,7 +37,6 @@ export type Dictionary = {
     items: {
       restaurant: { title: string; description: string };
       portfolio: { title: string; description: string };
-      shop: { title: string; description: string };
     };
   };
   contact: {
@@ -48,20 +47,11 @@ export type Dictionary = {
   projectsPage: {
     title: string;
     subtitle: string;
-    filters: {
-      all: string;
-      business: string;
-      portfolio: string;
-      ecommerce: string;
-      webapp: string;
-    };
     items: {
       restaurant: { title: string; description: string };
       portfolio: { title: string; description: string };
-      shop: { title: string; description: string };
       landingpage: { title: string; description: string };
       blog: { title: string; description: string };
-      dashboard: { title: string; description: string };
     };
   };
   servicesPage: {
@@ -86,13 +76,13 @@ export type Dictionary = {
           seo: string;
         };
       };
-      ecommerce: {
+      landingpages: {
         title: string;
         description: string;
         features: {
-          shopify: string;
-          payment: string;
           conversion: string;
+          speed: string;
+          testing: string;
         };
       };
     };
@@ -155,6 +145,8 @@ export type Dictionary = {
   };
 };
 
+export type Lang = "de" | "en";
+
 const dictionaries: Record<Lang, Dictionary> = {
   de: {
     nav: {
@@ -186,10 +178,10 @@ const dictionaries: Record<Lang, Dictionary> = {
         description:
           "Sauberer, schneller Code mit den neuesten Technologien. Performance und SEO von Anfang an.",
       },
-      ecommerce: {
-        title: "E-Commerce",
+      landingpages: {
+        title: "Landing Pages",
         description:
-          "Online-Shops die verkaufen. Von der Produktpräsentation bis zum Checkout – optimiert für Conversions.",
+          "Conversion-optimierte Seiten die Besucher zu Kunden machen. Schnell, fokussiert und effektiv.",
       },
     },
     projects: {
@@ -200,17 +192,12 @@ const dictionaries: Record<Lang, Dictionary> = {
         restaurant: {
           title: "Bella Vista Restaurant",
           description:
-            "Moderne Website für ein italienisches Restaurant mit Online-Reservierung.",
+            "Moderne Website für ein italienisches Restaurant mit Speisekarte und Kontaktformular.",
         },
         portfolio: {
           title: "Fotografen Portfolio",
           description:
             "Minimalistisches Portfolio mit Fokus auf visuelle Präsentation.",
-        },
-        shop: {
-          title: "Fashion Boutique",
-          description:
-            "E-Commerce Shop mit modernem Design und schnellem Checkout.",
         },
       },
     },
@@ -222,27 +209,16 @@ const dictionaries: Record<Lang, Dictionary> = {
     projectsPage: {
       title: "Meine Projekte",
       subtitle: "Eine Auswahl meiner bisherigen Arbeiten.",
-      filters: {
-        all: "Alle",
-        business: "Business",
-        portfolio: "Portfolio",
-        ecommerce: "E-Commerce",
-        webapp: "Web App",
-      },
       items: {
         restaurant: {
           title: "Bella Vista Restaurant",
           description:
-            "Moderne Website für ein italienisches Restaurant mit Online-Reservierung und Speisekarte.",
+            "Moderne Website für ein italienisches Restaurant mit Speisekarte und Kontaktformular.",
         },
         portfolio: {
           title: "Fotografen Portfolio",
           description:
             "Minimalistisches Portfolio mit eleganten Animationen und Galerie.",
-        },
-        shop: {
-          title: "Fashion Boutique",
-          description: "E-Commerce Shop mit Produktfilter und modernem Design.",
         },
         landingpage: {
           title: "Startup Landing Page",
@@ -252,10 +228,6 @@ const dictionaries: Record<Lang, Dictionary> = {
         blog: {
           title: "Minimalist Blog",
           description: "Cleaner Blog mit Fokus auf Lesbarkeit und Performance.",
-        },
-        dashboard: {
-          title: "Analytics Dashboard",
-          description: "Interaktives Dashboard zur Datenvisualisierung.",
         },
       },
     },
@@ -283,14 +255,14 @@ const dictionaries: Record<Lang, Dictionary> = {
             seo: "SEO-optimiert",
           },
         },
-        ecommerce: {
-          title: "E-Commerce",
+        landingpages: {
+          title: "Landing Pages",
           description:
-            "Online-Shops die verkaufen – von der Produktseite bis zum Checkout.",
+            "Conversion-optimierte Seiten die Besucher zu Kunden machen.",
           features: {
-            shopify: "Shopify & WooCommerce",
-            payment: "Sichere Zahlungsabwicklung",
-            conversion: "Conversion-optimiert",
+            conversion: "Conversion-fokussiert",
+            speed: "Schnelle Ladezeiten",
+            testing: "A/B Testing ready",
           },
         },
       },
@@ -374,7 +346,7 @@ const dictionaries: Record<Lang, Dictionary> = {
       hosting: {
         title: "Hosting",
         content:
-          "Meine Website wird bei Vercel Inc. gehostet. Beim Besuch meiner Website werden automatisch Informationen in Server-Log-Dateien gespeichert, die Ihr Browser automatisch übermittelt.",
+          "Meine Website wird bei Netlify gehostet. Beim Besuch meiner Website werden automatisch Informationen in Server-Log-Dateien gespeichert, die Ihr Browser automatisch übermittelt.",
       },
       cookies: {
         title: "Cookies",
@@ -432,10 +404,10 @@ const dictionaries: Record<Lang, Dictionary> = {
         description:
           "Clean, fast code with the latest technologies. Performance and SEO from the start.",
       },
-      ecommerce: {
-        title: "E-Commerce",
+      landingpages: {
+        title: "Landing Pages",
         description:
-          "Online shops that sell. From product presentation to checkout – optimized for conversions.",
+          "Conversion-optimized pages that turn visitors into customers. Fast, focused and effective.",
       },
     },
     projects: {
@@ -446,15 +418,11 @@ const dictionaries: Record<Lang, Dictionary> = {
         restaurant: {
           title: "Bella Vista Restaurant",
           description:
-            "Modern website for an Italian restaurant with online reservation.",
+            "Modern website for an Italian restaurant with menu and contact form.",
         },
         portfolio: {
           title: "Photographer Portfolio",
           description: "Minimalist portfolio focused on visual presentation.",
-        },
-        shop: {
-          title: "Fashion Boutique",
-          description: "E-commerce shop with modern design and fast checkout.",
         },
       },
     },
@@ -466,28 +434,16 @@ const dictionaries: Record<Lang, Dictionary> = {
     projectsPage: {
       title: "My Projects",
       subtitle: "A selection of my recent work.",
-      filters: {
-        all: "All",
-        business: "Business",
-        portfolio: "Portfolio",
-        ecommerce: "E-Commerce",
-        webapp: "Web App",
-      },
       items: {
         restaurant: {
           title: "Bella Vista Restaurant",
           description:
-            "Modern website for an Italian restaurant with online reservation and menu.",
+            "Modern website for an Italian restaurant with menu and contact form.",
         },
         portfolio: {
           title: "Photographer Portfolio",
           description:
             "Minimalist portfolio with elegant animations and gallery.",
-        },
-        shop: {
-          title: "Fashion Boutique",
-          description:
-            "E-commerce shop with product filters and modern design.",
         },
         landingpage: {
           title: "Startup Landing Page",
@@ -496,10 +452,6 @@ const dictionaries: Record<Lang, Dictionary> = {
         blog: {
           title: "Minimalist Blog",
           description: "Clean blog focused on readability and performance.",
-        },
-        dashboard: {
-          title: "Analytics Dashboard",
-          description: "Interactive dashboard for data visualization.",
         },
       },
     },
@@ -526,14 +478,14 @@ const dictionaries: Record<Lang, Dictionary> = {
             seo: "SEO optimized",
           },
         },
-        ecommerce: {
-          title: "E-Commerce",
+        landingpages: {
+          title: "Landing Pages",
           description:
-            "Online shops that sell – from product page to checkout.",
+            "Conversion-optimized pages that turn visitors into customers.",
           features: {
-            shopify: "Shopify & WooCommerce",
-            payment: "Secure payment processing",
-            conversion: "Conversion optimized",
+            conversion: "Conversion-focused",
+            speed: "Fast loading times",
+            testing: "A/B Testing ready",
           },
         },
       },
@@ -614,7 +566,7 @@ const dictionaries: Record<Lang, Dictionary> = {
       hosting: {
         title: "Hosting",
         content:
-          "My website is hosted by Vercel Inc. When you visit my website, information is automatically stored in server log files that your browser automatically transmits.",
+          "My website is hosted by Netlify. When you visit my website, information is automatically stored in server log files that your browser automatically transmits.",
       },
       cookies: {
         title: "Cookies",
@@ -643,8 +595,6 @@ const dictionaries: Record<Lang, Dictionary> = {
     },
   },
 };
-
-export type Lang = "de" | "en";
 
 export function getDictionary(lang: Lang): Dictionary {
   return dictionaries[lang];

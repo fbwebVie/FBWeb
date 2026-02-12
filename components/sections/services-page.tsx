@@ -4,12 +4,11 @@ import { motion, Variants } from "framer-motion";
 import {
   Palette,
   Code,
-  ShoppingCart,
+  Rocket,
   CheckCircle,
   MessageSquare,
   PenTool,
   Eye,
-  Rocket,
 } from "lucide-react";
 import Link from "next/link";
 import { Dictionary, Lang } from "@/lib/dictionaries";
@@ -46,9 +45,9 @@ const services = [
     features: ["nextjs", "performance", "seo"],
   },
   {
-    id: "ecommerce",
-    icon: ShoppingCart,
-    features: ["shopify", "payment", "conversion"],
+    id: "landingpages",
+    icon: Rocket,
+    features: ["conversion", "speed", "testing"],
   },
 ];
 
@@ -85,7 +84,7 @@ export function ServicesPage({ dict, lang }: { dict: Dictionary; lang: Lang }) {
             </motion.p>
           </motion.div>
 
-          {/* Services Grid - 3 Services */}
+          {/* Services Grid */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -143,7 +142,7 @@ export function ServicesPage({ dict, lang }: { dict: Dictionary; lang: Lang }) {
         </div>
       </section>
 
-      {/* Process Section - 4 Steps */}
+      {/* Process Section */}
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -161,7 +160,7 @@ export function ServicesPage({ dict, lang }: { dict: Dictionary; lang: Lang }) {
               </p>
             </motion.div>
 
-            {/* Process Steps - 4 Steps */}
+            {/* Process Steps */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {processSteps.map((step, index) => {
                 const stepDict =

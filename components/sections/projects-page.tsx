@@ -3,7 +3,6 @@
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ExternalLink, Clock } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 import { Dictionary, Lang } from "@/lib/dictionaries";
 
 const containerVariants: Variants = {
@@ -26,12 +25,10 @@ const itemVariants: Variants = {
   },
 };
 
-type FilterType = "all" | "business" | "portfolio" | "ecommerce" | "webapp";
-
+// Nur 4 Projekte, keine Filter
 const projects = [
   {
     id: "restaurant",
-    category: "business" as FilterType,
     tags: ["Next.js", "Framer Motion", "Tailwind"],
     image: "/projects/restaurant.png",
     liveUrl: "/demos/restaurant",
@@ -39,40 +36,21 @@ const projects = [
   },
   {
     id: "portfolio",
-    category: "portfolio" as FilterType,
     tags: ["React", "Animation", "Minimal"],
     image: "/projects/portfolio.png",
     liveUrl: "/demos/portfolio",
     comingSoon: false,
   },
   {
-    id: "shop",
-    category: "ecommerce" as FilterType,
-    tags: ["E-Commerce", "Next.js", "Tailwind"],
-    image: "/projects/shop.png",
-    liveUrl: "/demos/shop",
-    comingSoon: false,
-  },
-  {
     id: "landingpage",
-    category: "business" as FilterType,
     tags: ["Landing Page", "Conversion", "React"],
-    image: null,
-    liveUrl: null,
-    comingSoon: true,
+    image: "/projects/landing.png",  
+    liveUrl: "/demos/landing",        
+    comingSoon: false,              
   },
   {
     id: "blog",
-    category: "portfolio" as FilterType,
     tags: ["Blog", "MDX", "Minimal"],
-    image: null,
-    liveUrl: null,
-    comingSoon: true,
-  },
-  {
-    id: "dashboard",
-    category: "webapp" as FilterType,
-    tags: ["Dashboard", "Charts", "React"],
     image: null,
     liveUrl: null,
     comingSoon: true,
@@ -80,21 +58,6 @@ const projects = [
 ];
 
 export function ProjectsPage({ dict, lang }: { dict: Dictionary; lang: Lang }) {
-  const [activeFilter, setActiveFilter] = useState<FilterType>("all");
-
-  const filters: { key: FilterType; label: string }[] = [
-    { key: "all", label: dict.projectsPage.filters.all },
-    { key: "business", label: dict.projectsPage.filters.business },
-    { key: "portfolio", label: dict.projectsPage.filters.portfolio },
-    { key: "ecommerce", label: dict.projectsPage.filters.ecommerce },
-    { key: "webapp", label: dict.projectsPage.filters.webapp },
-  ];
-
-  const filteredProjects =
-    activeFilter === "all"
-      ? projects
-      : projects.filter((p) => p.category === activeFilter);
-
   return (
     <div className="min-h-screen py-24 px-6">
       <div className="max-w-7xl mx-auto">
@@ -113,30 +76,10 @@ export function ProjectsPage({ dict, lang }: { dict: Dictionary; lang: Lang }) {
             </p>
           </motion.div>
 
-          {/* Filters */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-wrap justify-center gap-3 mb-12"
-          >
-            {filters.map((filter) => (
-              <button
-                key={filter.key}
-                onClick={() => setActiveFilter(filter.key)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeFilter === filter.key
-                    ? "bg-gradient-to-r from-primary to-accent text-white"
-                    : "bg-surface/50 text-text-muted hover:text-text border border-white/10 hover:border-white/20"
-                }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </motion.div>
-
-          {/* Projects Grid - OHNE layout prop */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Projects Grid - 2x2 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <AnimatePresence mode="wait">
-              {filteredProjects.map((project, index) => {
+              {projects.map((project, index) => {
                 const projectDict =
                   dict.projectsPage.items[
                     project.id as keyof typeof dict.projectsPage.items
@@ -162,7 +105,6 @@ export function ProjectsPage({ dict, lang }: { dict: Dictionary; lang: Lang }) {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
-                        /* Coming Soon Placeholder - Kein Emoji */
                         <div className="w-full h-full flex flex-col items-center justify-center bg-surface/80">
                           <Clock className="w-8 h-8 text-text-muted/50 mb-2" />
                           <span className="text-text-muted/50 text-sm font-medium">
@@ -178,7 +120,7 @@ export function ProjectsPage({ dict, lang }: { dict: Dictionary; lang: Lang }) {
                         </div>
                       )}
 
-                      {/* Hover Overlay - nur für Live Projekte */}
+                      {/* Hover Overlay */}
                       {!project.comingSoon && project.liveUrl && (
                         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                           <Link

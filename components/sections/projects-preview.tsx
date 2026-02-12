@@ -26,7 +26,7 @@ const itemVariants: Variants = {
   },
 };
 
-// Projekt Daten - MIT Bildern und Live URLs
+// Nur 2 Projekte auf Homepage
 const projects = [
   {
     id: "restaurant",
@@ -40,55 +40,30 @@ const projects = [
     tags: ["Portfolio", "Animation"],
     liveUrl: "/demos/portfolio",
   },
-  {
-    id: "shop",
-    image: "/projects/shop.png",
-    tags: ["E-Commerce", "Tailwind"],
-    liveUrl: "/demos/shop",
-  },
 ];
 
 function ProjectCard({
   project,
   dict,
-  lang,
 }: {
   project: (typeof projects)[0];
   dict: Dictionary;
-  lang: Lang;
 }) {
   const projectDict =
     dict.projects.items[project.id as keyof typeof dict.projects.items];
 
-  // Wenn kein Link, nicht klickbar
-  const CardWrapper = project.liveUrl
-    ? ({ children }: { children: React.ReactNode }) => (
-        <Link href={project.liveUrl!} className="block">
-          {children}
-        </Link>
-      )
-    : ({ children }: { children: React.ReactNode }) => <>{children}</>;
-
   return (
     <motion.div variants={itemVariants} className="group relative">
-      <CardWrapper>
-        {/* Card */}
-        <div
-          className={`relative overflow-hidden rounded-2xl bg-surface/50 border border-white/10 transition-all duration-500 group-hover:border-white/20 group-hover:shadow-[0_0_40px_rgba(99,102,241,0.15)] ${project.liveUrl ? "cursor-pointer" : ""}`}
-        >
+      <Link href={project.liveUrl} className="block">
+        <div className="relative overflow-hidden rounded-2xl bg-surface/50 border border-white/10 transition-all duration-500 group-hover:border-white/20 group-hover:shadow-[0_0_40px_rgba(99,102,241,0.15)] cursor-pointer">
           {/* Image Container */}
           <div className="relative h-64 overflow-hidden">
-            {/* Bild oder Placeholder */}
-            {project.image ? (
-              <Image
-                src={project.image}
-                alt={projectDict.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            ) : (
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
-            )}
+            <Image
+              src={project.image}
+              alt={projectDict.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
@@ -107,11 +82,7 @@ function ProjectCard({
 
             {/* Hover Icon */}
             <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110">
-              {project.liveUrl ? (
-                <ExternalLink className="w-4 h-4" />
-              ) : (
-                <span className="text-xs">Soon</span>
-              )}
+              <ExternalLink className="w-4 h-4" />
             </div>
           </div>
 
@@ -125,7 +96,7 @@ function ProjectCard({
             </p>
           </div>
         </div>
-      </CardWrapper>
+      </Link>
     </motion.div>
   );
 }
@@ -156,15 +127,10 @@ export function ProjectsPreview({
             </p>
           </motion.div>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {/* Projects Grid - 2 Projekte */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {projects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                dict={dict}
-                lang={lang}
-              />
+              <ProjectCard key={project.id} project={project} dict={dict} />
             ))}
           </div>
 
