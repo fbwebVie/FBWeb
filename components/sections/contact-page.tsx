@@ -34,8 +34,13 @@ export function ContactPage({ dict, lang }: { dict: Dictionary; lang: Lang }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission
-    console.log(formState);
+
+    const subject = encodeURIComponent("Project request from " + formState.name);
+    const body = encodeURIComponent(
+      `Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`,
+    );
+
+    window.location.href = `mailto:fbwebvie@hotmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -52,9 +57,7 @@ export function ContactPage({ dict, lang }: { dict: Dictionary; lang: Lang }) {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4">
                 {dict.contact.title}
               </h1>
-              <p className="text-xl text-text-muted">
-                {dict.contact.subtitle}
-              </p>
+              <p className="text-xl text-text-muted">{dict.contact.subtitle}</p>
             </motion.div>
 
             <div className="grid lg:grid-cols-2 gap-16">
@@ -186,7 +189,10 @@ export function ContactPage({ dict, lang }: { dict: Dictionary; lang: Lang }) {
                       <textarea
                         value={formState.message}
                         onChange={(e) =>
-                          setFormState({ ...formState, message: e.target.value })
+                          setFormState({
+                            ...formState,
+                            message: e.target.value,
+                          })
                         }
                         rows={5}
                         className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-text-muted focus:border-primary focus:outline-none transition-colors resize-none"
