@@ -1,12 +1,13 @@
 import { getDictionary, Lang } from "@/lib/dictionaries";
 import { ServicesPage } from "@/components/sections/services-page";
 
-export default async function Services({
-  params,
-}: {
-  params: Promise<{ lang: Lang }>;
-}) {
-  const { lang } = await params;
+type PageProps = {
+  params: Promise<{ lang: string }>;
+};
+
+export default async function Services({ params }: PageProps) {
+  const { lang: langParam } = await params;
+  const lang: Lang = langParam === "en" ? "en" : "de";
   const dict = getDictionary(lang);
 
   return <ServicesPage dict={dict} lang={lang} />;

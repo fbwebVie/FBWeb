@@ -13,14 +13,14 @@ export async function generateStaticParams() {
   return [{ lang: "de" }, { lang: "en" }];
 }
 
-export default async function RootLayout({
-  children,
-  params,
-}: {
+type LayoutProps = {
   children: React.ReactNode;
-  params: Promise<{ lang: Lang }>;
-}) {
-  const { lang } = await params;
+  params: Promise<{ lang: string }>;
+};
+
+export default async function RootLayout({ children, params }: LayoutProps) {
+  const { lang: langParam } = await params;
+  const lang: Lang = langParam === "en" ? "en" : "de";
 
   return (
     <html lang={lang}>

@@ -4,12 +4,13 @@ import { Services } from "@/components/sections/services";
 import { ProjectsPreview } from "@/components/sections/projects-preview";
 import { Contact } from "@/components/sections/contact";
 
-export default async function Home({
-  params,
-}: {
-  params: Promise<{ lang: Lang }>;
-}) {
-  const { lang } = await params;
+type PageProps = {
+  params: Promise<{ lang: string }>;
+};
+
+export default async function Home({ params }: PageProps) {
+  const { lang: langParam } = await params;
+  const lang: Lang = langParam === "en" ? "en" : "de";
   const dict = getDictionary(lang);
 
   return (
